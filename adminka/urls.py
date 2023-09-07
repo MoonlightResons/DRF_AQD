@@ -1,0 +1,48 @@
+from django.urls import path
+from .views import (
+    AdminUserCreateView,
+    AdminLoginView,
+    AdminSellerRegisterView,
+    AdminCustomerRegisterView,
+    AdminUserListAPIView,
+    AdminSellerUpdateAPIView,
+    AdminCustomerUpdateAPIView,
+    AdminCustomerDeleteAPIView,
+    AdminSellerDeleteAPIView,
+    AdminProductCreateAPIView,
+    AdminProductListAPIView,
+    AdminBasketDetailAPIView,
+    AdminCommentListAPIView,
+    AdminCommentCreateAPIView,
+    AdminCommentDeleteAPIView,
+    AdminCommentUpdateAPIView,
+    AdminProductDeleteAPIView,
+    AdminProductUpdateAPIView,
+    AdminBasketAddProductAPIView,
+    AdminBasketItemDeleteAPIView, AdminSellerAnalytics
+)
+
+
+urlpatterns = [
+    path('create/', AdminUserCreateView.as_view(), name='admin-create'),
+    path('login/', AdminLoginView.as_view(), name='admin-login'),
+    path('create/customer-user', AdminCustomerRegisterView.as_view(), name='admin-customer-create'),
+    path('create/seller-user', AdminSellerRegisterView.as_view(), name='admin-seller-create'),
+    path('users/list', AdminUserListAPIView.as_view(), name='admin-users-list'),
+    path('<int:id>/customer/update/', AdminCustomerUpdateAPIView.as_view(), name='customer-update'),
+    path('<int:id>/seller/update/', AdminSellerUpdateAPIView.as_view(), name='seller-update'),
+    path('<int:id>/customer/delete/', AdminCustomerDeleteAPIView.as_view(), name='customer-delete'),
+    path('<int:id>/seller/delete/', AdminSellerDeleteAPIView.as_view(), name='seller-delete'),
+    path('product/add/', AdminProductCreateAPIView.as_view(), name='product-add'),
+    path('<int:id>/product/update/', AdminProductUpdateAPIView.as_view(), name='products-update'),
+    path('<int:id>/product/delete/', AdminProductDeleteAPIView.as_view(), name='products-delete'),
+    path('product/list/', AdminProductListAPIView.as_view(), name='products-list'),
+    path('<int:id>/basket/add-products/', AdminBasketAddProductAPIView.as_view(), name='basket-add'),
+    path('<int:id>/basket-info/', AdminBasketDetailAPIView.as_view(), name='basket-detail'),
+    path('<int:item_id>/basket/item/delete/', AdminBasketItemDeleteAPIView.as_view(), name='basket-item-delete'),
+    path('<int:id>/comment-create/', AdminCommentCreateAPIView.as_view(), name='comment-create'),
+    path('<int:id>/comment/delete/', AdminCommentDeleteAPIView.as_view(), name='comment-create'),
+    path('<int:product_id>/comment-list/', AdminCommentListAPIView.as_view(), name='comment-list'),
+    path('<int:id>/comment/update/', AdminCommentUpdateAPIView.as_view(), name='comment-update'),
+    path('<int:seller_id>/seller/analytic/', AdminSellerAnalytics.as_view(), name='seller-analytics'),
+]
