@@ -9,6 +9,9 @@ from .serializer import ProductSerializer, BasketItemSerializer, CommentSerializ
 from .models import Product, BasketItem, Basket, Comment, Rate
 from users.permisions import IsSellerPermission, IsOwnerOrReadOnly, IsOwnerOfBasket
 from rest_framework.pagination import PageNumberPagination
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.core.cache import cache
 
 
 class PaginationAPINumber(PageNumberPagination):
@@ -48,6 +51,22 @@ class ProductListAPIView(ListAPIView):
     permissions_classes = [permissions.AllowAny]
     serializer_class = ProductSerializer
 
+
+class ProductList2APIView(APIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = ProductSerializer
+
+    def get(self, request):
+        cached_data = cache.get('product_list_cache_key')
+        if cached_data is not None:
+            return Response(cached_data)
+
+        queryset = Product.objects.all()
+        serializer = ProductSerializer(queryset, many=True)
+
+        cache.set('product_list_cache_key', serializer.data, 60 * 5)  # Кешировать на 5 минут
+
+        return Response(serializer.data)
 
 
 class ProductDetailAPIView(APIView):

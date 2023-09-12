@@ -99,7 +99,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': "rest_framework.pagination.PageNumberPagination",
-        'PAGE_SIZE': 3,
+        'PAGE_SIZE': 100,
 }
 
 STRIPE_SECRET_KEY = 'sk_test_51NloWdH8Kk5QVmrOfxR3kjaRabw5FXJcHWafUd3uEYHoEmCaMtD9P4u4xyNKizyKxQPNAD4DDHhRt8XDtbfSFVsj00xZ02xlKe'
@@ -120,6 +120,25 @@ DATABASES = {
     }
 }
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Это адрес и порт Redis
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
+
+# Дополнительно, вы можете использовать Redis для сессий Django:
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

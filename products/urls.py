@@ -12,13 +12,15 @@ from .views import (
     CommentListAPIView,
     ProductFilterAPIView,
     CommentUpdateAPIView,
-    CommentDeleteAPIView
+    CommentDeleteAPIView,
+    ProductList2APIView
 )
 
 
 urlpatterns = [
     path('create/', ProductCreateAPIView.as_view(), name='products-created'),
     path('list/', ProductListAPIView.as_view(), name='products-list'),
+    path('list2/', ProductList2APIView.as_view(), name='products-list2'),
     path('filters/', ProductFilterAPIView.as_view(), name='product-filters'),
     path('<int:id>/', ProductDetailAPIView.as_view(), name='products-detail'),
     path('update/<int:id>/', ProductUpdateAPIView.as_view(), name='products-update'),

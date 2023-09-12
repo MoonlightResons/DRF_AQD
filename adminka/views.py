@@ -6,7 +6,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import permissions, status
 
 from products.views import get_object
-from users.serializer import SellerSerializer, CustomerSerializer, MyTokenObtainPairSerializer, CustomerProfileSerializer, SellerProfileSerializer
+from users.serializer import (
+    SellerSerializer,
+    CustomerSerializer,
+    MyTokenObtainPairSerializer,
+    CustomerProfileSerializer,
+    SellerProfileSerializer
+)
 from products.serializer import ProductSerializer, CommentSerializer, BasketItemSerializer
 from users.models import Seller, Customer, MyUser
 from users.permisions import AnnonPermission
@@ -14,7 +20,6 @@ from products.models import Product, Basket, BasketItem, Comment
 from adminka.models import Admin
 from adminka.permisions import IsAdminPermission
 from adminka.serializer import AdminSerializer, UserSerializer
-from django.db.models import Q
 
 
 class AdminLoginView(TokenObtainPairView):
