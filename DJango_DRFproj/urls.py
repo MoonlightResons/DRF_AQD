@@ -48,9 +48,9 @@ urlpatterns = [
         schema_view.without_ui(cache_timeout=0),
         name='schema-json'),
     path('admin/', admin.site.urls),
-    path('adminka/', include('adminka.urls')),
+    path('adminka/', include('apps.adminka.urls')),
     path('', include('rest_framework.urls')),
-    path('users/', include("users.urls")),
-    path('products/', include("products.urls")),
-    path('checkout/', include('checkout.urls')),
+    path('users/', include("apps.users.urls")),
+    path('products/', include("apps.products.urls")),
+    path('checkout/', include('apps.checkout.urls')),
 ]

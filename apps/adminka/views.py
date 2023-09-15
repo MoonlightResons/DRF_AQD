@@ -5,21 +5,21 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import permissions, status
 
-from products.views import get_object
-from users.serializer import (
+from apps.products.views import get_object
+from apps.users.serializer import (
     SellerSerializer,
     CustomerSerializer,
     MyTokenObtainPairSerializer,
     CustomerProfileSerializer,
     SellerProfileSerializer
 )
-from products.serializer import ProductSerializer, CommentSerializer, BasketItemSerializer
-from users.models import Seller, Customer, MyUser
-from users.permisions import AnnonPermission
-from products.models import Product, Basket, BasketItem, Comment
-from adminka.models import Admin
-from adminka.permisions import IsAdminPermission
-from adminka.serializer import AdminSerializer, UserSerializer
+from apps.products.serializer import ProductSerializer, CommentSerializer, BasketItemSerializer
+from apps.users.models import Seller, Customer, MyUser
+from apps.users.permisions import AnnonPermission
+from apps.products.models import Product, Basket, BasketItem, Comment
+from apps.adminka.models import Admin
+from apps.adminka.permisions import IsAdminPermission
+from apps.adminka.serializer import AdminSerializer, UserSerializer
 
 
 class AdminLoginView(TokenObtainPairView):

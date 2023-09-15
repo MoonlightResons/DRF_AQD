@@ -1,16 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.http import Http404
-from rest_framework import permissions, status, generics
+from rest_framework import permissions, status
 from rest_framework.generics import ListAPIView
-from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProductSerializer, BasketItemSerializer, CommentSerializer
-from .models import Product, BasketItem, Basket, Comment, Rate
-from users.permisions import IsSellerPermission, IsOwnerOrReadOnly, IsOwnerOfBasket
+from .models import Product, BasketItem, Basket, Comment
+from apps.users.permisions import IsSellerPermission, IsOwnerOrReadOnly
 from rest_framework.pagination import PageNumberPagination
-from django.views.decorators.cache import cache_page
-from django.utils.decorators import method_decorator
 from django.core.cache import cache
 
 

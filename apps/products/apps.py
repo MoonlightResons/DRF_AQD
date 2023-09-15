@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CheckoutConfig(AppConfig):
+class ProductsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'checkout'
+    name = 'apps.products'

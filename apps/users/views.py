@@ -1,18 +1,13 @@
-from django.utils import timezone
-from allauth.account.models import EmailAddress, EmailConfirmation
-from allauth.account.utils import send_email_confirmation
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import permissions, status
 from .serializer import SellerSerializer, CustomerSerializer, MyTokenObtainPairSerializer, CustomerProfileSerializer, SellerProfileSerializer
-from products.serializer import ProductSerializer
+from apps.products.serializer import ProductSerializer
 from .models import Seller, Customer
 from .permisions import AnnonPermission
-from products.models import Product, Basket
-import stripe
-from django.conf import settings
+from apps.products.models import Product, Basket
 
 
 class LoginView(TokenObtainPairView):
